@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqmrq8tqmge0p"]
+
+[ext_resource type="Script" uid="uid://dggvkcetxg047" path="res://scripts/StartMenu.cs" id="1_fcv5n"]
+[ext_resource type="PackedScene" uid="uid://dpxlur0pv3nde" path="res://scenes/background.tscn" id="1_thu50"]
+[ext_resource type="PackedScene" uid="uid://dcvi7bfmj8f0v" path="res://scenes/level.tscn" id="2_4v6gu"]
+[ext_resource type="Texture2D" uid="uid://c68o6e86qw847" path="res://assets/textures/bg/Pink.png" id="2_m7x51"]
+[ext_resource type="FontFile" uid="uid://egaiyi7n4qy3" path="res://assets/fonts/Kenney Pixel Square.ttf" id="3_m7x51"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h61rw"]
+font = ExtResource("3_m7x51")
+font_size = 28
+font_color = Color(0.494, 1, 0.31, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_m7x51"]
+specular_color = Color(0, 0, 0, 1)
+specular_shininess = 0.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h61rw"]
+texture = SubResource("CanvasTexture_m7x51")
+modulate_color = Color(0.494118, 1, 0.309804, 1)
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_fcv5n")
+FirstLevel = ExtResource("2_4v6gu")
+
+[node name="Background" parent="." instance=ExtResource("1_thu50")]
+BackgroundTexture = ExtResource("2_m7x51")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -2.0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -49.0
+offset_top = 47.0
+offset_right = 54.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "MARTIAN MIKE"
+label_settings = SubResource("LabelSettings_h61rw")
+
+[node name="Start" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -16.0
+offset_right = -21.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_m7x51")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h61rw")
+text = "Start"
+
+[node name="Quit" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = -16.0
+offset_right = 95.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_m7x51")
+theme_override_styles/normal = SubResource("StyleBoxTexture_h61rw")
+text = "Quit"

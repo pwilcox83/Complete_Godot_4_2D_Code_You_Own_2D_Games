@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbjwhii7q5ssa"]
+
+[ext_resource type="Script" uid="uid://dseu8fayj3jmg" path="res://scripts/Trap.cs" id="1_vi3hf"]
+[ext_resource type="Texture2D" uid="uid://efmych1ow6xf" path="res://assets/textures/other/Spiked Ball.png" id="2_vi3hf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kprxg"]
+radius = 12.0416
+
+[sub_resource type="Animation" id="Animation_5s1di"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vi3hf"]
+resource_name = "move"
+length = 2.0
+loop_mode = 1
+step = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(100, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtpbv"]
+_data = {
+&"RESET": SubResource("Animation_5s1di"),
+&"move": SubResource("Animation_vi3hf")
+}
+
+[node name="SpikeBall" type="Node2D" groups=["traps"]]
+script = ExtResource("1_vi3hf")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("2_vi3hf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_kprxg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rtpbv")
+}
+autoplay = "move"

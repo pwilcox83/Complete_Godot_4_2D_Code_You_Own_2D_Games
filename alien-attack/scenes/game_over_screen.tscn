@@ -1,0 +1,80 @@
+[gd_scene load_steps=5 format=3 uid="uid://dm27k88cq86it"]
+
+[ext_resource type="Script" uid="uid://lyxaxp4y323q" path="res://scripts/GameOverScreen.cs" id="1_iwahs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1glp"]
+bg_color = Color(0.7, 0.14, 0.196, 0.658824)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_gt22q"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_w3hxg"]
+font_size = 32
+font_color = Color(0.352516, 0.734086, 0.694421, 1)
+
+[node name="GameOverScreen" type="Panel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -177.0
+offset_right = 345.0
+offset_bottom = 177.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_p1glp")
+script = ExtResource("1_iwahs")
+
+[node name="GameOver" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 44.0
+offset_right = 187.0
+offset_bottom = 132.0
+grow_horizontal = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_gt22q")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.5
+offset_top = -44.0
+offset_right = 191.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SCORE: 9999"
+label_settings = SubResource("LabelSettings_w3hxg")
+horizontal_alignment = 1
+
+[node name="Retry" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 5.0
+offset_right = 74.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 44
+text = "Retry"

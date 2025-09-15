@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://b54ejrhqva6ke"]
+
+[ext_resource type="Texture2D" uid="uid://c004uukwdifki" path="res://assets/textures/player_ship.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://blksliye7ksm8" path="res://scripts/Player.cs" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://6akor2u6fewj" path="res://assets/audio/sfx_laser2.wav" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+radius = 26.377
+height = 52.754
+
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+offsets = PackedFloat32Array(0.0696517, 0.482587, 1)
+colors = PackedColorArray(0.88, 0.73568, 0.1584, 0.184314, 0.9, 0.5832, 0.108, 1, 0.95, 0.269167, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dqkch"]
+gradient = SubResource("Gradient_qhqgy")
+
+[sub_resource type="Curve" id="Curve_qlg0r"]
+_data = [Vector2(0.0396476, 0.516854), 0.0, 0.0, 0, 0, Vector2(0.506608, 0.494382), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_tuyoq"]
+curve = SubResource("Curve_qlg0r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fjrip"]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 15, 1)
+spread = 18.0
+initial_velocity_min = -200.0
+initial_velocity_max = -200.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_tuyoq")
+color_ramp = SubResource("GradientTexture1D_dqkch")
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_g2els")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(12, -1)
+rotation = 1.59207
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="RocketContainer" type="Node" parent="."]
+
+[node name="MissileFire" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qhqgy")
+
+[node name="FlameParticleEffect" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-21, 1)
+amount = 100
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_fjrip")

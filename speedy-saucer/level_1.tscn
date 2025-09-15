@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8mfhmmmo2q0f"]
+
+[ext_resource type="Texture2D" uid="uid://ew41uewqxfrg" path="res://assets/speedy_saucer_assets/purple.png" id="1_3hls8"]
+[ext_resource type="Script" uid="uid://bequ00prp6t4j" path="res://Level1.cs" id="1_hn12h"]
+[ext_resource type="PackedScene" uid="uid://c74p0v1fygmcl" path="res://player.tscn" id="2_hbghi"]
+[ext_resource type="PackedScene" uid="uid://cg8ogkbr8mg0v" path="res://maze_1.tscn" id="4_ihfcg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ihfcg"]
+font_size = 32
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_hn12h")
+
+[node name="Player" parent="." instance=ExtResource("2_hbghi")]
+z_index = 1
+position = Vector2(460, 113)
+
+[node name="Maze" parent="." instance=ExtResource("4_ihfcg")]
+z_index = -10
+position = Vector2(968, 314)
+
+[node name="LevelNodes" type="Node" parent="."]
+
+[node name="Tutorial Text" type="Label" parent="LevelNodes"]
+offset_left = 33.0
+offset_top = 40.0
+offset_right = 337.0
+offset_bottom = 373.0
+scale = Vector2(0.920001, 1)
+text = "The aim is to get 
+to the end of the 
+maze
+
+Controls
+ W
+ASD"
+label_settings = SubResource("LabelSettings_ihfcg")
+clip_text = true
+
+[node name="EndLabel" type="Label" parent="LevelNodes"]
+offset_left = 778.0
+offset_top = 225.0
+offset_right = 853.0
+offset_bottom = 270.0
+text = "End"
+label_settings = SubResource("LabelSettings_ihfcg")
+
+[node name="StartLabel" type="Label" parent="LevelNodes"]
+offset_left = 415.0
+offset_top = 89.0
+offset_right = 490.0
+offset_bottom = 134.0
+text = "Start"
+label_settings = SubResource("LabelSettings_ihfcg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="LevelNodes"]
+layer = -100
+
+[node name="Background" type="TextureRect" parent="LevelNodes/CanvasLayer"]
+z_index = -100
+offset_top = 3.0
+offset_right = 1151.0
+offset_bottom = 652.0
+texture = ExtResource("1_3hls8")
+stretch_mode = 1
+
+[connection signal="body_shape_exited" from="Player" to="." method="_on_player_body_shape_exited"]
